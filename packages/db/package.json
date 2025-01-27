@@ -1,0 +1,17 @@
+{
+  "name": "@budge/db",
+  "module": "index.ts",
+  "type": "module",
+  "exports": {
+    "./db": "./index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.2.1"
+  }
+}
