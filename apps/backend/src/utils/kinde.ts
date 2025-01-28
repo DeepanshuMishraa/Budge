@@ -9,7 +9,7 @@ export const kindeClient = createKindeServerClient(GrantType.AUTHORIZATION_CODE,
   clientId: process.env.clientId!,
   clientSecret: process.env.secret!,
   redirectURL: process.env.redirectUrl!,
-  logoutRedirectURL: "http://localhost:5173/api/v1/auth/logout",
+  logoutRedirectURL: "http://localhost:3000/api/v1/auth/logout",
 });
 
 // Client for client credentials flow
@@ -17,7 +17,7 @@ const kindeApiClient = createKindeServerClient(GrantType.CLIENT_CREDENTIALS, {
   authDomain: process.env.KINDE_DOMAIN!,
   clientId: process.env.clientId!,
   clientSecret: process.env.secret!,
-  logoutRedirectURL: "http://localhost:5173/api/v1/auth/me",
+  logoutRedirectURL: "http://localhost:3000/api/v1/auth/me",
 });
 
 
@@ -33,6 +33,7 @@ export const sessionManager = (c: Context): SessionManager => ({
       httpOnly: true,
       secure: true,
       sameSite: "Lax",
+      path: "/"
     } as const;
     if (typeof value === "string") {
       setCookie(c, key, value, cookieOptions);
