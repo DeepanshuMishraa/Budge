@@ -8,12 +8,14 @@
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "@budge/db": "workspace:*"
+    "@budge/db": "workspace:*",
+    "@budge/common": "workspace:*"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@hono/zod-validator": "^0.4.2",
     "@kinde-oss/kinde-node-express": "^1.6.0",
     "@kinde-oss/kinde-typescript-sdk": "^2.9.1"
   }
