@@ -1,17 +1,16 @@
 import { Hono } from "hono"
 import { logger } from "hono/logger";
-import { router } from "./routes/api";
+import { authRouter } from "./routes/auth";
 
 
-const app = new Hono();
-app.use("*", logger());
-app.route("/api/v1", router);
+const api = new Hono().basePath("/api/v1");
+api.route("/auth", authRouter)
 
-app.get("/", (c) => {
+api.get("/health", (c) => {
   return c.json({
     message: "working"
   })
 })
 
-export default app;
+export default api;
 
