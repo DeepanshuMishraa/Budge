@@ -35,7 +35,7 @@ export default function Navbar() {
 const DesktopNav = () => {
   return (
     <nav className="max-lg:hidden flex items-center justify-center p-4">
-      <div className="flex items-center justify-between px-4 py-3 w-full max-w-xl rounded-xl backdrop-blur-md border border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-gray-900/80 shadow-sm dark:shadow-gray-800/20">
+      <div className="flex items-center justify-between px-4 py-3 w-full max-w-xl rounded-xl backdrop-blur-md border border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-black shadow-sm dark:shadow-gray-800/20">
         <Link
           href="/"
           className="font-semibold text-xl text-gray-800 hover:text-gray-900 dark:text-gray-200 dark:hover:text-white transition-colors"
@@ -52,7 +52,7 @@ const DesktopNav = () => {
           </Link>
           <Button
             asChild
-            className="rounded-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-lg transition-all dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800 dark:text-white"
+            className="rounded-sm bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 shadow-lg transition-all dark:from-blue-600 dark:to-blue-700 dark:hover:from-blue-700 dark:hover:to-blue-800 dark:text-white"
           >
             <Link href="/signup">Get Started</Link>
           </Button>
@@ -66,7 +66,7 @@ const MobileNav = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <nav className="lg:hidden flex items-center justify-between p-4 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 bg-white/90 dark:bg-gray-900/90">
+    <nav className="lg:hidden flex items-center justify-between p-4 backdrop-blur-md border-b border-gray-200 dark:border-gray-800 bg-white/90 dark:bg-black">
       <Link
         href="/"
         className="font-bold text-2xl text-gray-800 dark:text-gray-200"
