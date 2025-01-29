@@ -3,8 +3,10 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div>
-      Hello world <Button>Click Me</Button>
+    <div className="max-h-lvw mt-[100rem]">
+      <div>
+        <h1>Hi</h1>
+      </div>
     </div>
   );
 }
