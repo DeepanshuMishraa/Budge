@@ -17,4 +17,4 @@ export const Button = ({ children, className, appName }: ButtonProps) => {
       {children}
     </button>
   );
-};
+};  
