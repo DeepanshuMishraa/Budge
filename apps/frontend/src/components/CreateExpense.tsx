@@ -7,14 +7,51 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { PlusIcon } from "lucide-react";
-import { useId } from "react";
+import { Loader2, PlusIcon } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { createExpenseSchema as formSchema } from "@budge/common/schema"
+import axios from "axios";
+import { toast } from "sonner"
+import { useNavigate } from "@tanstack/react-router";
 
 
 export default function CreateExpense() {
-  const id = useId();
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      title: "",
+      amount: "",
+      tags: []
+    },
+  });
+
+  const navigate = useNavigate();
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    try {
+      const res = await axios.post("/api/v1/expenses", values);
+      if (res.status != 200) {
+        console.log("Error creating expense")
+      }
+      toast.success("Expense created")
+      navigate({ to: "/expenses" })
+    } catch (err) {
+      console.log(err)
+      toast.error("Error creating expense")
+    }
+  }
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -28,44 +65,70 @@ export default function CreateExpense() {
           </DialogDescription>
         </DialogHeader>
 
-        <form className="space-y-5">
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor={`${id}-title`}>Title</Label>
-              <Input
-                id={`${id}-title`}
-                placeholder="Grocery shopping"
-                type="text"
-                required
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+            <div className="space-y-4">
+              <FormField
+                control={form.control}
+                name="title"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Title</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Grocery shopping" {...field} />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="amount"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Amount</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        placeholder="0.00"
+                        {...field}
+                        onChange={(e) => field.onChange(Number(e.target.value))}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="tags"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Tags</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Enter tags separated by commas"
+                        value={field.value?.join(', ') || ''}
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          field.onChange(value ? value.split(',').map(tag => tag.trim()) : []);
+                        }}
+                      />
+                    </FormControl>
+                    <FormDescription>
+                      Optional: Separate tags with commas (e.g. groceries, food, household)
+                    </FormDescription>
+                  </FormItem>
+                )}
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor={`${id}-amount`}>Amount</Label>
-              <Input
-                id={`${id}-amount`}
-                placeholder="0.00"
-                type="number"
-                step="0.01"
-                min="0"
-                required
-              />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor={`${id}-tags`}>Tags</Label>
-              <Input
-                id={`${id}-tags`}
-                placeholder="Enter tags separated by commas"
-                type="text"
-              />
-              <p className="text-sm text-muted-foreground">
-                Optional: Separate tags with commas (e.g. groceries, food, household)
-              </p>
-            </div>
-          </div>
-          <Button type="submit" className="w-full">
-            Create Expense
-          </Button>
-        </form>
+            <Button type="submit" className="w-full">
+              {form.formState.isSubmitting ? <Loader2 className="animate-spin" /> : "Create Expense"}
+            </Button>
+          </form>
+        </Form>
       </DialogContent>
     </Dialog>
   );

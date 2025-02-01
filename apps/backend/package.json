@@ -6,6 +6,9 @@
     "dev": "bun --watch ./src/index.ts",
     "start": "bun ./src/index.ts"
   },
+  "exports": {
+    "./apiroutes": "./src/index.ts"
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "@budge/db": "workspace:*",

@@ -4,17 +4,16 @@ import { authRouter } from "./routes/auth";
 import { expensesRoute } from "./routes/expense";
 import { aiRouter } from "./routes/ai";
 
+const app = new Hono();
+app.use("*",logger())
 
-const api = new Hono().basePath("/api/v1");
-api.route("/auth", authRouter)
-api.route("/expenses", expensesRoute)
-api.route("/ai",aiRouter)
+app.basePath("/api/v1").route("/auth", authRouter).route("/expenses", expensesRoute).route("/ai", aiRouter)
 
-api.get("/health", (c) => {
+app.get("/health", (c) => {
   return c.json({
     message: "working"
   })
 })
 
-export default api;
+export default app;
 

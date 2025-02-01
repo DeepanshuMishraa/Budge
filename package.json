@@ -1,5 +1,5 @@
 {
-  "name": "AIEXP",
+  "name": "@budge/main",
   "private": true,
   "scripts": {
     "build": "turbo build",
