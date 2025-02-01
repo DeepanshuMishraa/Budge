@@ -1,13 +1,14 @@
+import Hero from '@/components/custom/Hero'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
-  component: Index,
+  component: Landing,
 })
 
-function Index() {
+function Landing() {
   return (
-    <div className="p-2">
-      <h3>Welcome Home!</h3>
-    </div>
+    <>
+      <Hero />
+    </>
   )
 }
