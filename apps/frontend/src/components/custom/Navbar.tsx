@@ -22,17 +22,17 @@ const Navbar = () => {
 
           <div className="hidden md:flex md:items-center md:space-x-4">
             <ModeToggle />
-            <Link to="/">
+            <a href="/api/v1/auth/login">
               <Button variant="outline" className="py-3 hover:text-red-500">
                 Login
               </Button>
-            </Link>
-            <Link to="/">
+            </a>
+            <a href="/api/auth/register">
               <Button className="bg-red-500 text-white py-3" variant={null}>
                 <BoxIcon className="mr-2 h-4 w-4" />
                 Get Started for Free
               </Button>
-            </Link>
+            </a>
           </div>
 
           <div className="md:hidden">
@@ -53,20 +53,20 @@ const Navbar = () => {
             className="md:hidden"
           >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <Link to="/">
+              <a href="/api/v1/auth/login">
                 <Button variant="outline" className="w-full text-left py-3 hover:text-red-500">
                   Login
                 </Button>
-              </Link>
+              </a>
               <div className="w-full text-left py-3">
-              <ModeToggle  />
+                <ModeToggle />
               </div>
-              <Link to="/">
+              <a href="/api/auth/register">
                 <Button className="w-full text-left bg-red-500 text-white py-3" variant={null}>
                   <BoxIcon className="mr-2 h-4 w-4" />
                   Get Started for Free
                 </Button>
-              </Link>
+              </a>
             </div>
           </motion.div>
         )}

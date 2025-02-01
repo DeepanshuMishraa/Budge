@@ -1,7 +1,5 @@
 import { motion } from "framer-motion"
 import { useTheme } from "next-themes"
-import { Mockup, MockupFrame } from "./mockup"
-import Glow from "./glow"
 const Hero = () => {
   const text = "Track your spend effortlessly"
   const subtitle = "No matter what your budget is, we can help you manage it."
