@@ -9,6 +9,8 @@ export default {
     extend: {
       animation: {
         "shiny-text": "shiny-text 8s infinite",
+         appear: 'appear 0.6s forwards ease-out',
+        'appear-zoom': 'appear-zoom 0.6s forwards ease-out',
       },
       keyframes: {
         "shiny-text": {
@@ -18,6 +20,31 @@ export default {
           "30%, 60%": {
             "background-position": "calc(100% + var(--shiny-width)) 0",
           },
+        },
+        appear: {
+          '0%': {
+            opacity: '0',
+            transform: 'translateY(1rem)',
+            filter: 'blur(.5rem)'
+          },
+          '50%': {
+            filter: 'blur(0)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translateY(0)',
+            filter: 'blur(0)'
+          }
+        },
+        'appear-zoom': {
+          '0%': {
+            opacity: '0',
+            transform: 'scale(.5)'
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'scale(1)'
+          }
         },
       },
       borderRadius: {

@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router"
 import { Button } from "../ui/button"
 import { BoxIcon, Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+import { ModeToggle } from "./mode-toggle"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -20,6 +21,7 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex md:items-center md:space-x-4">
+            <ModeToggle />
             <Link to="/">
               <Button variant="outline" className="py-3 hover:text-red-500">
                 Login
@@ -56,6 +58,9 @@ const Navbar = () => {
                   Login
                 </Button>
               </Link>
+              <div className="w-full text-left py-3">
+              <ModeToggle  />
+              </div>
               <Link to="/">
                 <Button className="w-full text-left bg-red-500 text-white py-3" variant={null}>
                   <BoxIcon className="mr-2 h-4 w-4" />

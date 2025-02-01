@@ -1,7 +1,24 @@
 import { motion } from "framer-motion"
+import { useTheme } from "next-themes"
+import { Mockup, MockupFrame } from "./mockup"
+import Glow from "./glow"
 const Hero = () => {
   const text = "Track your spend effortlessly"
   const subtitle = "No matter what your budget is, we can help you manage it."
+
+  const { resolvedTheme } = useTheme();
+  let src;
+
+  switch (resolvedTheme) {
+    case "light":
+      src = "https://phh5ur14gr.ufs.sh/f/a1wYTWuoYzdPe4sEg1BCFhWYdQp2iaP9eEj6tOkHMAXIJ4UG";
+      break;
+    case "dark":
+      src = "https://phh5ur14gr.ufs.sh/f/a1wYTWuoYzdPAuUf4By9Sw1GHsnoKJ6LCVQt04hPucI2iMXE";
+      break;
+    default:
+      src = "https://phh5ur14gr.ufs.sh/f/a1wYTWuoYzdPe4sEg1BCFhWYdQp2iaP9eEj6tOkHMAXIJ4UG";
+  }
 
   return (
     <div className="flex flex-col items-center justify-center h-screen px-4">
