@@ -4,7 +4,7 @@ const Hero = () => {
   const subtitle = "No matter what your budget is, we can help you manage it."
 
   return (
-    <div className="flex flex-col items-center justify-center max-lg:h-[64vh] h-screen px-4">
+    <div className="flex flex-col items-center justify-center h-screen px-4">
       <motion.h1
         className="text-4xl md:text-6xl lg:text-7xl font-bold text-center bg-gradient-to-b from-foreground to-foreground/70 bg-clip-text py-4 text-transparent  leading-[3rem] "
         initial={{ opacity: 0, y: 20 }}
