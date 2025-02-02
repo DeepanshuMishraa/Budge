@@ -45,8 +45,27 @@ export async function Classify(data: Transaction[]): Promise<any> {
         content: `Analyze these transactions: ${JSON.stringify(data)}`
       }
     ],
-    model: "llama3-70b-8192", 
-    response_format: { type: "json_object" }, 
-    temperature: 0.2 
+    model: "llama3-70b-8192",
+    response_format: { type: "json_object" },
+    temperature: 0.2
   });
+}
+
+
+export async function Chat(query: string) {
+  const response = await client.chat.completions.create({
+    model: "llama3-70b-8192",
+    messages: [
+      {
+        role: "system",
+        content: "You are an AI assistant helping a user with their financial transactions.",
+      },
+      {
+        role: "user",
+        content: query
+      }
+    ]
+  });
+
+  return response.choices[0].message.content;
 }
