@@ -31,7 +31,7 @@ authRouter.get("/callback", async (c) => {
   const user = await kindeClient.getUserProfile(sessionManager(c));
   if (!user || !user.id) {
     console.error("Failed to get user profile");
-    return c.redirect("/api/v1/auth/login");
+    return c.redirect(process.env.KINDE_POST_LOGIN_REDIRECT_URL!);
   }
 
   try {
@@ -59,7 +59,7 @@ authRouter.get("/callback", async (c) => {
     return c.json({ error: "Failed to store user data" }, 500);
   }
 
-  return c.redirect("/api/v1/auth/me");
+  return c.redirect(process.env.KINDE_POST_LOGIN_REDIRECT_URL!);
 });
 
 

@@ -4,7 +4,11 @@
   "type": "module",
   "scripts": {
     "dev": "bun --watch ./src/index.ts",
-    "start": "bun ./src/index.ts"
+    "start": "bun ./src/index.ts",
+    "dev:wrangler": "wrangler pages dev dist --live-reload",
+    "dev:esbuild": "esbuild --bundle src/index.ts --format=esm --watch --outfile=dist/_worker.js",
+    "build": "esbuild --bundle src/index.ts --format=esm --outfile=dist/_worker.js",
+    "deploy": " bunx wrangler pages deploy dist"
   },
   "exports": {
     "./apiroutes": "./src/index.ts"
